@@ -1,30 +1,29 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:parksahay/main.dart';
+import 'package:parksahay/auth/auth_gate.dart';
+import 'package:parksahay/main.dart'; // Import your main.dart file
+import 'package:firebase_core/firebase_core.dart'; // Import Firebase Core for initialization
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  setUpAll(() async {
+    // Initialize Firebase before running tests
+    await Firebase.initializeApp(
+      options: const FirebaseOptions(
+        apiKey: "YOUR_API_KEY", // Replace with your Firebase API key
+        appId: "YOUR_APP_ID", // Replace with your Firebase App ID
+        messagingSenderId: "YOUR_MESSAGING_SENDER_ID", // Replace with your Messaging Sender ID
+        projectId: "YOUR_PROJECT_ID", // Replace with your Firebase Project ID
+      ),
+    );
+  });
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  testWidgets('Park Sahay App smoke test', (WidgetTester tester) async {
+    // Build the ParkSahayApp widget and trigger a frame.
+    await tester.pumpWidget(const ParkSahayApp());
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // Verify that the app starts with the AuthGate widget.
+    expect(find.byType(AuthGate), findsOneWidget);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Optionally, you can add more tests here to verify other widgets or functionality.
   });
 }
