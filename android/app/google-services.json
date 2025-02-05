@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "679640573288",
+    "project_id": "parksahay",
+    "storage_bucket": "parksahay.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:679640573288:android:dffd14a734645383c222dd",
+        "android_client_info": {
+          "package_name": "com.example.parksahay"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxowIfRz3a8fKuYF8D6QX4IblYoUP3VHI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
